@@ -18,13 +18,15 @@ def main
   while continue?
     game_value = rand(15)
     case game_value
-    when 14
+    when 14...15
       status_value = status_value * 1.10
-    when 12
+    when 12..13
       status_value = status_value * 1.02
-    when 7
+    when 9..10
+      # do nothing
+    when 7..8
       status_value = status_value * 0.98
-    when 5
+    when 5..6
       status_value = status_value * 0.9
     else
       status_value = status_value * 0.5
