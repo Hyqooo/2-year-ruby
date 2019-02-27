@@ -1,3 +1,4 @@
+# Different kind of parsers of input
 def read_input_number(message)
   loop do
     print "#{message}"
