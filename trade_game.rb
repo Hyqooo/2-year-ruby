@@ -32,6 +32,8 @@ def main
 
     print "#{status_value}\n"
   end
+
+  print "#{status_value}\n"
 end
 
 main
