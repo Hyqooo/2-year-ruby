@@ -1,4 +1,4 @@
-def read_input(message)
+def read_input_number(message)
   loop do
     print "#{message}"
     line = gets
@@ -8,5 +8,26 @@ def read_input(message)
     return Float(line.strip)
   rescue ArgumentError => _exception
     puts "incorrect number, try again"
+  end
+end
+
+def read_input_string(message)
+  loop do 
+    print "#{message}"
+    line = gets
+
+    if line.nil?
+      puts "Empty field, try again"
+      next
+    end
+    line = line.strip
+    
+    if line.empty?
+      puts "Empty field, try again"      
+      next
+    end 
+    
+      return line
+
   end
 end
