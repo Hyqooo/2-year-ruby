@@ -1,8 +1,8 @@
-require_relative "read_input"
+require_relative "../util/read_input"
 
 def correct_age?(age)
   case age
-  when 15..99
+  when 15..100
     return true
   else
     return false
