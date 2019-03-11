@@ -1,19 +1,5 @@
 require_relative '../util/read_input'
 
-def is_power_of_two(number)
-  power = 0
-  result = 0
-  while result < number
-    result = 2 ** power
-    if result == number
-      return true
-    end
-    power += 1
-  end
-
-  return false
-end
-
 print "Prints values that power of two\n"
 
 source_a = []
@@ -25,8 +11,15 @@ loop do
 end
 
 p source_a
+
+powered_index = 1
+power = 1
 index = 0
 for value in source_a do
-  print(value, " ") if is_power_of_two(index)
-  index += 1
+    if index == powered_index
+        print(value, " ")
+        powered_index = 2 ** power
+        power += 1
+    end
+    index += 1
 end
