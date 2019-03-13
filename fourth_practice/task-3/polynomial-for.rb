@@ -14,11 +14,11 @@ def calc_value(polynomial, point)
 end
 
 def derivative(polynomial)
-    der_polynomial = []
-    power = polynomial.size - 1
-    # delete free member
-    polynomial.pop
-    
+  der_polynomial = []
+  power = polynomial.size - 1
+  # delete free member
+  polynomial.pop
+
     index = 0
     for value in polynomial do
       der_polynomial.push(value * (power - index))
@@ -29,27 +29,28 @@ def derivative(polynomial)
 end
 
 def main
-    polynomial = []
-    power = read_input_number("Input power: ") + 1
-    index = 0
+  polynomial = []
+  power = read_input_number('Input power: ') + 1
+  index = 0
 
-    puts "Input coeffs: "
+  puts 'Input coeffs: '
 
-    while index < power
-        temp = read_input_number("")
-        break if temp.nil?
-        polynomial.push(temp)
-        index += 1
-    end
+  while index < power
+    temp = read_input_number('')
+    break if temp.nil?
 
-    point = read_input_number("Input point: ")
-    value = calc_value(polynomial, point)
+    polynomial.push(temp)
+    index += 1
+  end
 
-    der_polynomial = derivative(polynomial)
-    d_value = calc_value(der_polynomial, point)
+  point = read_input_number('Input point: ')
+  value = calc_value(polynomial, point)
 
-    puts "Value at point #{point}: #{value}"
-    puts "Value of derivative at point #{point}: #{d_value}"
+  der_polynomial = derivative(polynomial)
+  d_value = calc_value(der_polynomial, point)
+
+  puts "Value at point #{point}: #{value}"
+  puts "Value of derivative at point #{point}: #{d_value}"
 end
 
 main
