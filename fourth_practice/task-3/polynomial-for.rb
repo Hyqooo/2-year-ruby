@@ -4,7 +4,12 @@ def calc_value(polynomial, point)
     result = 0
     power = polynomial.size - 1
     
-    polynomial.each_with_index { |value, index| result += value * (point ** (power - index)) }
+    index = 0
+    for value in polynomial do
+      result += value * (point ** (power - index))
+      index += 1
+    end
+
     return result
 end
 
@@ -13,8 +18,11 @@ def derivative(polynomial)
     power = polynomial.size - 1
     # delete free member
     polynomial.pop
-    polynomial.each_with_index do |value, index|
-        der_polynomial.push(value * (power - index))
+    
+    index = 0
+    for value in polynomial do
+      der_polynomial.push(value * (power - index))
+      index += 1
     end
 
     return der_polynomial
