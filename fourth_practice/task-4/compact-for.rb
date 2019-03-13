@@ -1,7 +1,12 @@
 require_relative '../../util/read_input'
 
 def delete(array)
-    array.delete_if {|value| value == 0}
+  index = 0
+  for value in array do
+      array.delete(0)
+  end
+
+  return array
 end
 
 def main
