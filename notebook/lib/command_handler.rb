@@ -1,12 +1,16 @@
 # Handles user input and do needed operation
 # for specified command
+require_relative 'person'
+
 module Command
+  include Person
+
   def add(message)
     puts message
   end
 
   def remove
-    p 'remove'
+    
   end
 
   def ch_name
