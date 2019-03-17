@@ -1,4 +1,4 @@
-module Input_handlers
+module InputHandlers
   # to print message uses function w/out '\n'
   def num_input(message)
     loop do
@@ -23,14 +23,11 @@ module Input_handlers
         next
       end
       line = line.strip
-
       if line.empty?
         puts 'This field cannot be empty!'
         next
       end
-  
       return line
-
     end
   end
 end
