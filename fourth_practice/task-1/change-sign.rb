@@ -1,4 +1,4 @@
-require_relative '../util/read_input'
+require_relative '../../util/read_input'
 
 print "Counts amount of sign changes in a array\n"
 
