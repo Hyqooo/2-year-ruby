@@ -1,32 +1,38 @@
 module NotebookHandler
-  @notebook[]
+  class Notebook
+    @list
 
-  def add(person)
-    notebook.push(person)
-  end
+    def initialize
+      @list = []
+    end
 
-  def remove(person)
-    # check if this method is appropriate
-    notebook.delete(person)
-  end
+    def add(person)
+      @list.push(person) 
+    end
 
-  def change_name(person, name)
-    notebook.get(person).name = name
-  end
+    def remove(person)
+      # check if this method is appropriate
+      @list.delete(person)
+    end
 
-  def change_phone(person, phone)
-    notebook.get(person).phone = phone
-  end
+    def change_name(person, name)
+      @list.get(person).name = name
+    end
 
-  def sort_by_surename
+    def change_phone(person, phone)
+      @list.get(person).phone = phone
+    end
 
-  end
+    def sort_by_surename
 
-  def sort_by_status
+    end
 
-  end
+    def sort_by_status
 
-  def event(event)
+    end
 
+    def event(event)
+
+    end
   end
 end
