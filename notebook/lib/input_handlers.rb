@@ -33,16 +33,4 @@ module InputHandlers
       return line
     end
   end
-
-  def address_input(message)
-    print "#{message}"
-    street = string_input('')
-    house_number = num_input('')
-    return Address.new(street, house_number)
-  end
-
-  def phone_input(message)
-    print "#{message}"
-    phone = num_input('')
-  end
 end

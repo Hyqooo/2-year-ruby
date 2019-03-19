@@ -44,13 +44,13 @@ module Parser
     private
 
     def add
-      name = string_input('input name: ')
-      surename = string_input('input surename: ')
-      patr = string_input('input patronymic: ')
-      cell_phone = phone_input('input cell phone: ')
-      home_phone = phone_input('input home phone: ')
-      address = address_input('input address<Street>, <Number of house>: ')
-      status = string_input('input status: ')
+      name = string_input('Name: ')
+      surename = string_input('Surename: ')
+      patr = string_input('Patronymic: ')
+      cell_phone = num_input('Cell phone: ')
+      home_phone = num_input('Home phone: ')
+      address = string_input('Address(<Street> <Number of house>): ')
+      status = string_input('Status: ')
 
       person = Person.new(name, surename, patr, cell_phone, home_phone, address, status) 
       @notebook.add(person)
