@@ -1,0 +1,20 @@
+TODO:
+  - Add code that checks if user has inputed wrong data
+    - Letters in the cell/home phone number
+  - Add equal function to know which person we look for
+  - Add check if notebook already has person with given name, surename, patronymic 
+  - Add input from file
+    - Parse file from human-readable format (Probably that would be YAML)
+  - There's a problem input too coupled with messages this is not how it should work
+    - If we will try to implement input from file that will be useless
+
+  - We can't automatically parse address and separate this into street and number of house
+  - I need parse phone numbers in the different way
+IN PROGRESS:
+
+
+
+
+DONE: 
+  - Add address class
+  - Add distinct input functions for complex classes

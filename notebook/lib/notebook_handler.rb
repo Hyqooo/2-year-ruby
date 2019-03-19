@@ -15,24 +15,48 @@ module NotebookHandler
       @list.delete(person)
     end
 
-    def change_name(person, name)
-      @list.get(person).name = name
+    def change_address(name, surename, patr, new_address)
+      @list.each do |person|
+        if person.name == name &&
+            person.surename == surename &&
+            person.patronymic == patr
+          person.address = new_address
+        end 
+      end 
     end
 
-    def change_phone(person, phone)
-      @list.get(person).phone = phone
+    def change_phone(name, surename, patr, new_phone)
+      @list.each do |person|
+        if person.name == name &&
+            person.surename == surename &&
+            person.patronymic == patr
+          person.cell_phone = new_phone
+        end 
+      end 
     end
 
     def sort_by_surename
-
+      @list.sort! { |p1, p2| p1.surename <=> p2.surename }
     end
 
     def sort_by_status
-
+      @list.sort! { |p1, p2| p1.status <=> p2.status }
     end
 
-    def event(event)
+    def event(status)
+      invited = []
+      @list.each do |person|
+        if person.status == status
+          invited.push(person)
+        end
+      end
+      return invited
+    end
 
+    def to_s
+      line = ""
+      @list.each { |person| line += person.to_s }
+      return line
     end
   end
 end

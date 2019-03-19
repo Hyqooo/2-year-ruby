@@ -14,10 +14,10 @@ module Parser
       @options = {
         'remove' => :remove,
         'add'          => :add,
-        'change name'  => :ch_name,
-        'change phone' => :ch_phone,
-        's surename'   => :sort_surename,
-        's status'     => :sort_status,
+        'caddress'  => :ch_address,
+        'cphone' => :ch_phone,
+        's surename'   => :sort_by_surename,
+        's status'     => :sort_by_status,
         'event'        => :event,
         'exit'         => :exit
       }
@@ -37,7 +37,7 @@ module Parser
           send(method)
         end
         # debug
-        p @notebook
+        puts @notebook
       end
     end
 
@@ -47,38 +47,56 @@ module Parser
       name = string_input('Name: ')
       surename = string_input('Surename: ')
       patr = string_input('Patronymic: ')
-      cell_phone = num_input('Cell phone: ')
-      home_phone = num_input('Home phone: ')
-      address = string_input('Address(<Street> <Number of house>): ')
+#      cell_phone = num_input('Cell phone: ')
+#      home_phone = num_input('Home phone: ')
+#      address = string_input('Address(<Street> <Number of house>): ')
       status = string_input('Status: ')
 
-      person = Person.new(name, surename, patr, cell_phone, home_phone, address, status) 
+      person = Person.new(name, surename, patr, nil, nil, nil, status)
+      #cell_phone, home_phone, address, status) 
       @notebook.add(person)
     end
 
     def remove
-      line = gets
-      @notebook.remove(line)
+      name = string_input('Name: ')
+      surename = string_input('Surename: ')
+      patr = string_input('Patronymic: ')
+      # probably this is not a good solution
+      person = Person.new(name, surename, patr, nil, nil, nil, nil)
+      @notebook.remove(person)
     end
 
-    def ch_name
-      # ...
+    def ch_address
+      name = string_input('Name: ')
+      surename = string_input('Surename: ')
+      patr = string_input('Patronymic: ')
+      new_address = string_input('New address(<Street> <Number of house>): ')
+      @notebook.change_address(name, surename, patr, new_address)
     end
 
     def ch_phone
-      # ...
+      name = string_input('Name: ')
+      surename = string_input('Surename: ')
+      patr = string_input('Patronymic: ')
+      new_phone = num_input('New phone: ')
+      @notebook.change_phone(name, surename, patr, new_phone)  
     end
 
-    def sort_by_name
-      # ...
+    def sort_by_surename
+      @notebook.sort_by_surename
     end
 
     def sort_by_status
-      # ...
+      @notebook.sort_by_status 
     end
 
     def event
-      # ...
+      event_name = string_input('Name of event: ')
+      status = string_input('Status: ')
+      invited = @notebook.event(event_name, status)
+      invited.each do |person|
+        # do invites for each person
+      end
     end
   end
 end
