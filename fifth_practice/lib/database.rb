@@ -1,7 +1,6 @@
 class Database
-  @courses
-  @students
-  def initilalize(courses, students)
+  attr_reader :courses, :students
+  def initialize(courses, students)
     @courses = courses
     @students = students
   end

@@ -1,8 +1,10 @@
+require 'psych'
+
 class Student
-  attr_accessor :name, :surename, :id
-  def initialize(name, surename, id)
+  attr_accessor :name, :surname, :id
+  def initialize(name, surname, id)
     @name = name
-    @surename = surename
+    @surname = surname
     @id = id
   end
 end

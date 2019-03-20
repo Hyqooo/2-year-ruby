@@ -1,5 +1,5 @@
 class Course
-  @course_name
+  attr_reader :course_name
   def initialize(course_name)
     @course_name = course_name
     @students = Hash.new
@@ -13,14 +13,3 @@ class Course
     @students.each { |key, value| yield(key, value) }
   end
 end
-
-course1 = Course.new("Course")
-p course1
-course1.set_grade('petrov', 4)
-p course1
-course1.set_grade('ivanov', 5)
-p course1
-course1.set_grade('sidorov', 3)
-p course1
-course1.each { |key, value| puts "#{key}" if value == 3 }
-course1.each { |key, value| puts 'privet' }
