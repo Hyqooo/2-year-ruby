@@ -1,0 +1,29 @@
+students:
+  - id: 0
+    name: Ivan
+    surname: Loskutov
+  - id: 2
+    name: Maria
+    surname: Dovlatova
+  - id: 5
+    name: Alice
+    surname: Dilbert
+courses:
+  - name: Biology
+    grades:
+      - student_id: 0
+        grade: 5.3
+      - student_id: 2
+        grade: 4.5
+      - student_id: 5
+        grade: 5.0
+  - name: Math
+    grades:
+      - student_id: 5
+        grade: 4.6
+      - student_id: 0
+        grade: 5.1
+      - student_id: 2
+        grade: 5.2
+  - name: Computer Science
+  - name:
