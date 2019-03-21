@@ -30,4 +30,8 @@ module Input
       return line
     end
   end
+  
+  def self.read_file()
+    all_info = Psych.load_file('../data/data.yaml')
+  end
 end

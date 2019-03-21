@@ -22,7 +22,7 @@ module Notebook
 
     def to_s
       "\nName: #{@name}
-Surename: #{@surname}
+Surname: #{@surname}
 Patronymic: #{@patronymic}
 Cell phone: #{@cell_phone}
 Home phone: #{@home_phone}

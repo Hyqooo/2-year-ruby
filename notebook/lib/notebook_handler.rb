@@ -11,7 +11,6 @@ module Notebook
     end
 
     def remove(person)
-      # check if this method is appropriate
       @list.delete(person)
     end
 

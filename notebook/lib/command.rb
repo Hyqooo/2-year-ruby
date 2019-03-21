@@ -1,26 +1,26 @@
-# parses input of user and determine which
-# command user wants to execute
 require_relative 'notebook_handler'
 require_relative 'input_handlers'
 require_relative 'person'
 
 module Notebook
-  class Core 
+  # parses input of user and determine which
+  # command user wants to execute
+  class Core
     def initialize
       @notebook = Notebook.new
       @options = {
         'remove' => :remove,
-        'add'          => :add,
-        'caddress'  => :ch_address,
+        'add' => :add,
+        'caddress' => :ch_address,
         'cphone' => :ch_phone,
-        's surname'   => :sort_by_surname,
+        's surname' => :sort_by_surname,
         's status'     => :sort_by_status,
         'event'        => :event,
         'exit'         => :exit
       }
     end
 
-    def run 
+    def run
       loop do
         print '> '
         line = gets
@@ -44,13 +44,12 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       patr = Input.string_input('Patronymic: ')
-      #      cell_phone = Input.num_input('Cell phone: ')
-      #      home_phone = Input.num_input('Home phone: ')
-      #      address = Input.string_input('Address(<Street> <Number of house>): ')
+      cell_phone = Input.num_input('Cell phone: ')
+      home_phone = Input.num_input('Home phone: ')
+      address = Input.string_input('Address(<Street> <Number of house>): ')
       status = Input.string_input('Status: ')
-
-      person = Person.new(name, surname, patr, nil, nil, nil, status)
-      #cell_phone, home_phone, address, status) 
+      person = Person.new(name, surname, patr, # nil, nil, nil, status)
+                          cell_phone, home_phone, address, status)
       @notebook.add(person)
     end
 
@@ -58,7 +57,6 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       patr = Input.tstring_input('Patronymic: ')
-      # probably this is not a good solution
       person = Person.new(name, surname, patr, nil, nil, nil, nil)
       @notebook.remove(person)
     end
@@ -67,7 +65,7 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       patr = Input.string_input('Patronymic: ')
-      new_address = Input.string_input('New address(<Street> <Number of house>): ')
+      new_address = Input.string_input('New address(<Street> <House number>): ')
       @notebook.change_address(name, surname, patr, new_address)
     end
 
@@ -76,7 +74,7 @@ module Notebook
       surname = Input.string_input('Surname: ')
       patr = Input.string_input('Patronymic: ')
       new_phone = Input.num_input('New phone: ')
-      @notebook.change_phone(name, surname, patr, new_phone)  
+      @notebook.change_phone(name, surname, patr, new_phone)
     end
 
     def sort_by_surname
