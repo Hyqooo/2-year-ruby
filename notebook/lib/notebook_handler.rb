@@ -48,10 +48,8 @@ module Notebook
       return invited
     end
 
-    def to_s
-      line = ""
-      @list.each { |person| line += person.to_s }
-      return line
+    def each
+      @list.each { |person| yield(person) }
     end
   end
 end

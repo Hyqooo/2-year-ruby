@@ -7,7 +7,7 @@ module Notebook
   # command user wants to execute
   class Core
     def initialize
-      @notebook = Notebook.new
+      @notebook = Input.read_file
       @options = {
         'remove' => :remove,
         'add' => :add,
@@ -16,7 +16,8 @@ module Notebook
         's surname' => :sort_by_surname,
         's status'     => :sort_by_status,
         'event'        => :event,
-        'exit'         => :exit
+        'exit'         => :exit,
+        'show'         => :show
       }
     end
 
@@ -33,8 +34,6 @@ module Notebook
         else
           send(method)
         end
-        # debug
-        puts @notebook
       end
     end
 
@@ -56,7 +55,7 @@ module Notebook
     def remove
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
-      patr = Input.tstring_input('Patronymic: ')
+      patr = Input.string_input('Patronymic: ')
       person = Person.new(name, surname, patr, nil, nil, nil, nil)
       @notebook.remove(person)
     end
@@ -79,10 +78,12 @@ module Notebook
 
     def sort_by_surname
       @notebook.sort { |p1, p2| p1.surname <=> p2.surname }
+      show
     end
 
     def sort_by_status
       @notebook.sort { |p1, p2| p1.status <=> p2.status }
+      show
     end
 
     def event
@@ -92,6 +93,10 @@ module Notebook
       invited.each do |person|
         # do invites for each person
       end
+    end
+
+    def show
+      @notebook.each { |person| puts person }
     end
   end
 end

@@ -1,4 +1,9 @@
+require_relative 'notebook_handler'
+require_relative 'person'
+require 'psych'
+
 module Input 
+  include Notebook
   # to print message use message w/out '\n'
   def self.num_input(message)
     loop do
@@ -31,7 +36,21 @@ module Input
     end
   end
   
-  def self.read_file()
+  def self.read_file
+    notebook = Notebook.new
     all_info = Psych.load_file('../data/data.yaml')
+    all_info.each do |person| 
+      name = person['name']
+      surname = person['surname']
+      patr = person['patronymic']
+      cell_phone = person['cell phone']
+      home_phone = person['home phone']
+      address = person['address']
+      status = person['status']
+      new_person = Person.new(name, surname, patr, cell_phone,
+                              home_phone, address, status)
+      notebook.add(new_person)
+    end
+    return notebook
   end
 end
