@@ -1,12 +1,12 @@
-module Person
+module Notebook 
   class Person
-    attr_reader :name, :surename, :patronymic, :cell_phone, :home_phone, :address, :status
+    attr_reader :name, :surname, :patronymic, :cell_phone, :home_phone, :address, :status
     attr_writer :cell_phone, :address
 
-    def initialize(name, surename, patronymic, cell_phone,
+    def initialize(name, surname, patronymic, cell_phone,
                    home_phone, address, status)
       @name = name
-      @surename = surename
+      @surname = surname
       @patronymic = patronymic
       @cell_phone = cell_phone
       @home_phone = home_phone
@@ -15,14 +15,14 @@ module Person
     end
 
     def ==(other)
-      name == other.name &&
-        surename == other.surename &&
-        patronymic == other.patronymic
+      @name == other.name &&
+        @surname == other.surname &&
+        @patronymic == other.patronymic
     end
 
     def to_s
       "\nName: #{@name}
-Surename: #{@surename}
+Surename: #{@surname}
 Patronymic: #{@patronymic}
 Cell phone: #{@cell_phone}
 Home phone: #{@home_phone}

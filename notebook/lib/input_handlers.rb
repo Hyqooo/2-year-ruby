@@ -1,9 +1,6 @@
-require_relative 'address'
-
-module InputHandlers
-  include Address
+module Input 
   # to print message uses function w/out '\n'
-  def num_input(message)
+  def self.num_input(message)
     loop do
       print "#{message}"
       line = gets
@@ -16,7 +13,7 @@ module InputHandlers
     end
   end
 
-  def string_input(message)
+  def self.string_input(message)
     loop do
       print "#{message}"
       line = gets

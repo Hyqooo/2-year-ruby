@@ -1,6 +1,7 @@
 #! /usr/bin/env ruby 
 
 require_relative '../lib/command'
-
-work = Parser::Parser.new
-work.parse
+module Notebook
+  work = Core.new
+  work.run
+end

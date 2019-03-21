@@ -1,4 +1,4 @@
-module Address
+module Notebook 
   class Address
     def initialize(street, house_number)
       @street = street

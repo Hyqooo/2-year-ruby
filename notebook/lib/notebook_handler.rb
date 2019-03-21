@@ -1,4 +1,4 @@
-module NotebookHandler
+module Notebook
   class Notebook
     @list
 

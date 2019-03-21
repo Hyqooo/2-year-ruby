@@ -4,11 +4,8 @@ require_relative 'notebook_handler'
 require_relative 'input_handlers'
 require_relative 'person'
 
-module Parser
-  class Parser
-    include NotebookHandler
-    include InputHandlers
-    include Person
+module Notebook
+  class Core 
     def initialize
       @notebook = Notebook.new
       @options = {
@@ -23,7 +20,7 @@ module Parser
       }
     end
 
-    def parse
+    def run 
       loop do
         print '> '
         line = gets
@@ -44,42 +41,42 @@ module Parser
     private
 
     def add
-      name = string_input('Name: ')
-      surename = string_input('Surename: ')
-      patr = string_input('Patronymic: ')
-#      cell_phone = num_input('Cell phone: ')
-#      home_phone = num_input('Home phone: ')
-#      address = string_input('Address(<Street> <Number of house>): ')
-      status = string_input('Status: ')
+      name = Input.string_input('Name: ')
+      surname = Input.string_input('Surname: ')
+      patr = Input.string_input('Patronymic: ')
+      #      cell_phone = Input.num_input('Cell phone: ')
+      #      home_phone = Input.num_input('Home phone: ')
+      #      address = Input.string_input('Address(<Street> <Number of house>): ')
+      status = Input.string_input('Status: ')
 
-      person = Person.new(name, surename, patr, nil, nil, nil, status)
+      person = Person.new(name, surname, patr, nil, nil, nil, status)
       #cell_phone, home_phone, address, status) 
       @notebook.add(person)
     end
 
     def remove
-      name = string_input('Name: ')
-      surename = string_input('Surename: ')
-      patr = string_input('Patronymic: ')
+      name = Input.string_input('Name: ')
+      surname = Input.string_input('Surname: ')
+      patr = Input.tstring_input('Patronymic: ')
       # probably this is not a good solution
-      person = Person.new(name, surename, patr, nil, nil, nil, nil)
+      person = Person.new(name, surname, patr, nil, nil, nil, nil)
       @notebook.remove(person)
     end
 
     def ch_address
-      name = string_input('Name: ')
-      surename = string_input('Surename: ')
-      patr = string_input('Patronymic: ')
-      new_address = string_input('New address(<Street> <Number of house>): ')
-      @notebook.change_address(name, surename, patr, new_address)
+      name = Input.string_input('Name: ')
+      surname = Input.string_input('Surname: ')
+      patr = Input.string_input('Patronymic: ')
+      new_address = Input.string_input('New address(<Street> <Number of house>): ')
+      @notebook.change_address(name, surname, patr, new_address)
     end
 
     def ch_phone
-      name = string_input('Name: ')
-      surename = string_input('Surename: ')
-      patr = string_input('Patronymic: ')
-      new_phone = num_input('New phone: ')
-      @notebook.change_phone(name, surename, patr, new_phone)  
+      name = Input.string_input('Name: ')
+      surname = Input.string_input('Surname: ')
+      patr = Input.string_input('Patronymic: ')
+      new_phone = Input.num_input('New phone: ')
+      @notebook.change_phone(name, surname, patr, new_phone)  
     end
 
     def sort_by_surename
@@ -91,8 +88,8 @@ module Parser
     end
 
     def event
-      event_name = string_input('Name of event: ')
-      status = string_input('Status: ')
+      event_name = Input.string_input('Name of event: ')
+      status = Input.string_input('Status: ')
       invited = @notebook.event(event_name, status)
       invited.each do |person|
         # do invites for each person
