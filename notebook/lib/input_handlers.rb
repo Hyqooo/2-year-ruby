@@ -1,5 +1,5 @@
 module Input 
-  # to print message uses function w/out '\n'
+  # to print message use message w/out '\n'
   def self.num_input(message)
     loop do
       print "#{message}"

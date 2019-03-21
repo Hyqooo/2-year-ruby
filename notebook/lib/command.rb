@@ -13,7 +13,7 @@ module Notebook
         'add'          => :add,
         'caddress'  => :ch_address,
         'cphone' => :ch_phone,
-        's surename'   => :sort_by_surename,
+        's surname'   => :sort_by_surname,
         's status'     => :sort_by_status,
         'event'        => :event,
         'exit'         => :exit
@@ -79,12 +79,12 @@ module Notebook
       @notebook.change_phone(name, surname, patr, new_phone)  
     end
 
-    def sort_by_surename
-      @notebook.sort_by_surename
+    def sort_by_surname
+      @notebook.sort { |p1, p2| p1.surname <=> p2.surname }
     end
 
     def sort_by_status
-      @notebook.sort_by_status 
+      @notebook.sort { |p1, p2| p1.status <=> p2.status }
     end
 
     def event

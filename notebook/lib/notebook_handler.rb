@@ -35,14 +35,10 @@ module Notebook
       end 
     end
 
-    def sort_by_surename
-      @list.sort! { |p1, p2| p1.surename <=> p2.surename }
-    end
-
-    def sort_by_status
-      @list.sort! { |p1, p2| p1.status <=> p2.status }
-    end
-
+    def sort
+      @list.sort! { |p1, p2| yield(p1, p2) }
+    end 
+    
     def event(status)
       invited = []
       @list.each do |person|
