@@ -19,6 +19,7 @@ module Notebook
         'exit'         => :exit,
         'show'         => :show
       }
+      show
     end
 
     def run
@@ -89,10 +90,25 @@ module Notebook
     def event
       event_name = Input.string_input('Name of event: ')
       status = Input.string_input('Status: ')
-      invited = @notebook.event(event_name, status)
+      invited = @notebook.event(status)
       invited.each do |person|
-        # do invites for each person
+        file_work(person) 
       end
+    end
+
+    def file_work(person)
+        file_name = person.name + '_' + person.surname + '_' + person.patronymic
+        file = File.new(file_name, "w")  
+        name_of_person = person.name + ' ' + person.surname + ' ' + person.patronymic
+        app = Input.string_input('Add home address[y/n]?: ')
+        if app.downcase == 'y'
+          file.write(person.address + "\n")
+        end
+        file.write(name_of_person + "\n")
+        puts name_of_person
+        message = Input.string_input('Message: ')
+        file.write(message)
+        file.close
     end
 
     def show
