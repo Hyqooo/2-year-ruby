@@ -35,8 +35,8 @@ module Notebook
     end
 
     def sort
-      @list.sort! { |p1, p2| yield(p1, p2) }
-    end 
+      @list.sort_by! { |person| yield(person)  }
+    end
     
     def event(status)
       invited = []

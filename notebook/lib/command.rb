@@ -24,9 +24,7 @@ module Notebook
 
     def run
       loop do
-        print '> '
-        line = gets
-        break if line.nil?
+        line = Input.string_input('> ')
 
         method = @options[line.strip]
         break if method == 'exit'
@@ -48,7 +46,7 @@ module Notebook
       home_phone = Input.num_input('Home phone: ')
       address = Input.string_input('Address(<Street> <Number of house>): ')
       status = Input.string_input('Status: ')
-      
+
       person = Person.new(name, surname, m_name, cell_phone,
                           home_phone, address, status)
       @notebook.add(person)
@@ -58,7 +56,7 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       m_name = Input.string_input('Middle name: ')
-      
+
       person = Person.new(name, surname, m_name, nil, nil, nil, nil)
       @notebook.remove(person)
     end
@@ -67,7 +65,7 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       m_name = Input.string_input('Middle name: ')
-      
+
       new_address = Input.string_input('New address(<Street> <House number>): ')
       @notebook.change_address(name, surname, m_name, new_address)
     end
@@ -76,18 +74,18 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       m_name = Input.string_input('Patronymic: ')
-      
+
       new_phone = Input.num_input('New phone: ')
       @notebook.change_phone(name, surname, m_name, new_phone)
     end
 
     def sort_by_surname
-      @notebook.sort { |p1, p2| p1.surname <=> p2.surname }
+      @notebook.sort(&:surname)
       show
     end
 
     def sort_by_status
-      @notebook.sort { |p1, p2| p1.status <=> p2.status }
+      @notebook.sort(&:status)
       show
     end
 
