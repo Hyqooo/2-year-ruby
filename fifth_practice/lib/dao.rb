@@ -9,6 +9,7 @@ class Dao
   def read_db
     all_info = Psych.load_file('../data/data.yaml')
     students = parse_students(all_info)
+    p students
     courses = parse_courses(all_info)
     database = Database.new(courses, courses)
     return database
