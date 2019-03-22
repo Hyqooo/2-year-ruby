@@ -1,15 +1,15 @@
 TODO:
   - Add check if notebook already has person with given name, surename, patronymic 
-  - We can't automatically parse address and separate this into street and number of house
   - I need parse phone numbers in the different way
-IN PROGRESS:
+  - command: What is the best way to put a lot of input in one function call? 
+  - command: remove function line: 60, that is probably not the best way to do such things
+  - command: maybe I can replace name, surname, patr lines with one function call
+  - notebook_handler: change_address/phone maybe there is more convenient way to do this things
+  - notebook_handler: event is the same with the previous comment
+  - command: I need to write separate function for phone numbers
+  - command: Maybe I need figure out how to initilize @options outside of function
 
-
-
-
-DONE: 
-  - Add equal function to know which person we look for
-  - Add input from file
-    - Parse file from human-readable format (Probably that would be YAML)
-  - Add address class
-  - Add distinct input functions for complex classes
+TO ASK:
+  - rescue error I can refer to parser version (2.1)
+  - initialize has got 7 parameters instead of 5
+  - how to write options hash outside of function initialize 

@@ -1,13 +1,15 @@
-module Notebook 
+module Notebook
+  # stores info about one person
   class Person
-    attr_reader :name, :surname, :m_name, :cell_phone, :home_phone, :address, :status
+    attr_reader :name, :surname, :m_name, :cell_phone,
+                :home_phone, :address, :status
     attr_writer :cell_phone, :address
 
     def initialize(name, surname, m_name, cell_phone,
                    home_phone, address, status)
       @name = name
       @surname = surname
-      @m_name = m_name 
+      @m_name = m_name
       @cell_phone = cell_phone
       @home_phone = home_phone
       @address = address
@@ -21,14 +23,10 @@ module Notebook
     end
 
     def to_s
-      "\nName: #{@name}
-Surname: #{@surname}
-Middle name: #{@m_name}
-Cell phone: #{@cell_phone}
-Home phone: #{@home_phone}
-Address: #{@address}
-Status: #{@status}
-      "
+      str = "\nName: #{@name}\nSurname: #{@surname}\n Middle name: #{@m_name}" \
+            "\nCell phone: #{@cell_phone}\nHome phone: #{@home_phone}" \
+            "\nAddress: #{@address}\nStatus: #{@status}"
+      str
     end
   end
 end
