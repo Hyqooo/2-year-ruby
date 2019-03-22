@@ -28,11 +28,9 @@ module Notebook
 
         method = @options[line.strip]
         break if method == 'exit'
-        if method.nil?
-          puts 'Unknown command, try again'
-        else
-          send(method)
-        end
+
+        # call given method
+        send(method)
       end
     end
 
