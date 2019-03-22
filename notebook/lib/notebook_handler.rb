@@ -14,21 +14,21 @@ module Notebook
       @list.delete(person)
     end
 
-    def change_address(name, surename, patr, new_address)
+    def change_address(name, surename, m_name, new_address)
       @list.each do |person|
         if person.name == name &&
             person.surename == surename &&
-            person.patronymic == patr
+            person.m_name == m_name
           person.address = new_address
         end 
       end 
     end
 
-    def change_phone(name, surename, patr, new_phone)
+    def change_phone(name, surename, m_name, new_phone)
       @list.each do |person|
         if person.name == name &&
             person.surename == surename &&
-            person.patronymic == patr
+            person.m_name == m_name 
           person.cell_phone = new_phone
         end 
       end 
