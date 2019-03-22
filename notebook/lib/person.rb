@@ -23,7 +23,7 @@ module Notebook
     end
 
     def to_s
-      str = "\nName: #{@name}\nSurname: #{@surname}\n Middle name: #{@m_name}" \
+      str = "\nName: #{@name}\nSurname: #{@surname}\nMiddle name: #{@m_name}" \
             "\nCell phone: #{@cell_phone}\nHome phone: #{@home_phone}" \
             "\nAddress: #{@address}\nStatus: #{@status}"
       str

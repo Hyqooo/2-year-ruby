@@ -1,33 +1,27 @@
 require_relative 'notebook_handler'
 require_relative 'input_handlers'
 require_relative 'person'
+require_relative 'options'
 
 module Notebook
   # parses input of user and determine which
   # command user wants to execute
   class Core
+    include Options
     def initialize
       @notebook = Input.read_file
-      @options = {
-        'remove' => :remove,
-        'add' => :add,
-        'caddress' => :ch_address,
-        'cphone' => :ch_phone,
-        's surname' => :sort_by_surname,
-        's status'     => :sort_by_status,
-        'event'        => :event,
-        'exit'         => :exit,
-        'show'         => :show
-      }
-      show
     end
 
     def run
       loop do
         line = Input.string_input('> ')
 
-        method = @options[line.strip]
+        method = Options.get(line.strip)
         break if method == 'exit'
+        if method.nil?
+          puts 'Unknown command, try again'
+          next
+        end
 
         # call given method
         send(method)
