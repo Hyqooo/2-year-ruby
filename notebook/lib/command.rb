@@ -34,8 +34,8 @@ module Notebook
       name = Input.string_input('Name: ')
       surname = Input.string_input('Surname: ')
       m_name = Input.string_input('Middle name: ')
-      cell_phone = Input.num_input('Cell phone: ')
-      home_phone = Input.num_input('Home phone: ')
+      cell_phone = Input.phone_input('Cell phone: ')
+      home_phone = Input.phone_input('Home phone: ')
       address = Input.string_input('Address(<Street> <Number of house>): ')
       status = Input.string_input('Status: ')
 
@@ -67,7 +67,7 @@ module Notebook
       surname = Input.string_input('Surname: ')
       m_name = Input.string_input('Patronymic: ')
 
-      new_phone = Input.num_input('New phone: ')
+      new_phone = Input.phone_input('New phone: ')
       @notebook.change_phone(name, surname, m_name, new_phone)
     end
 

@@ -35,6 +35,22 @@ module Input
       return line
     end
   end
+
+  def self.phone_input(message)
+    loop do
+      line = string_input(message)
+      # delete all spaces in the string
+      line.gsub!(/\s+/, "")
+
+      # parse only valid phone numbers
+      # (+ or NUMBER)NUMBERS
+      if line.match?(/^(([+]|\d)\d+)$/)
+        return line
+      else
+        puts 'Invalid number, try again'
+      end 
+    end
+  end
   
   def self.read_file
     notebook = Notebook.new
