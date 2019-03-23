@@ -54,8 +54,11 @@ module Input
   
   def self.read_file
     notebook = Notebook.new
+    return notebook unless File.exist?('../data/data.yaml')
+    
     all_info = Psych.load_file('../data/data.yaml')
-    all_info.each do |person| 
+    
+    all_info.each do |person|
       name = person['name']
       surname = person['surname']
       patr = person['patronymic']
@@ -63,10 +66,14 @@ module Input
       home_phone = person['home phone']
       address = person['address']
       status = person['status']
+    
       new_person = Person.new(name, surname, patr, cell_phone,
                               home_phone, address, status)
       notebook.add(new_person)
     end
+    return notebook
+  rescue Psych::SyntaxError => e
+    puts "File cannot be loaded: #{e}"
     return notebook
   end
 end

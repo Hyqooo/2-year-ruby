@@ -1,9 +1,4 @@
 TODO:
-  - Add check if notebook already has person with given name, surename, patronymic 
-  - command: What is the best way to put a lot of input in one function call? 
-  - command: remove function line: 60, that is probably not the best way to do such things
-  - command: I need to write separate function for phone numbers
-  - What if input file has a mistake, I believe that exception should be caught
 
 TO ASK:
   - rescue error I can refer to parser version (2.1)
