@@ -1,5 +1,2 @@
 TODO:
-  - Print short info about persons
-    - Delete persons by number
-    - Change address and phone by number
-
+  - Save state of the notebook into file

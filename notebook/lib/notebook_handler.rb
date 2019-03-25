@@ -11,24 +11,19 @@ module Notebook
       @list.push(person)
     end
 
-    def remove(person)
-      @list.delete(person)
+    def remove(index)
+      return if index < 1 || index - 1 > @list.size
+      @list.delete_at(Integer(index - 1))
     end
 
-    def change_address(name, surname, m_name, new_address)
-      @list.each do |p|
-        next unless p.name == name && p.surname == surname && p.m_name == m_name
-
-        p.address = new_address
-      end
+    def change_address(index, new_address)
+      return if index < 1 || index - 1 > @list.size
+      @list[index - 1].address = new_address
     end
 
-    def change_phone(name, surname, m_name, new_phone)
-      @list.each do |p|
-        next unless p.name == name && p.surname == surname && p.m_name == m_name
-
-        p.cell_phone = new_phone
-      end
+    def change_phone(index, new_phone)
+      return if index < 1 || index - 1 > @list.size
+      @list[index - 1].cell_phone = new_phone
     end
 
     def sort
@@ -45,6 +40,10 @@ module Notebook
 
     def each
       @list.each { |person| yield(person) }
+    end
+
+    def each_with_index
+      @list.each_with_index { |person, index| yield(person, index) }
     end
   end
 end

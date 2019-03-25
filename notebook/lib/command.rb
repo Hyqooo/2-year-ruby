@@ -3,7 +3,6 @@
 require_relative 'notebook_handler'
 require_relative 'input_handlers'
 require_relative 'person'
-require_relative 'options'
 
 module Notebook
   # parses input of user and determine which
@@ -22,7 +21,6 @@ module Notebook
         line = Input.string_input('> ')
 
         method = @options[line.strip]
-        # method = Options.get(line.strip)
         break if method == 'exit'
 
         if method.nil?
@@ -46,36 +44,31 @@ module Notebook
       address = Input.string_input('Address(<Street> <Number of house>): ')
       status = Input.string_input('Status: ')
 
-      person = Person.new(name, surname, m_name, cell_phone,
-                          home_phone, address, status)
+      person = Person.new(name, surname, m_name, cell_phone, home_phone, address, status)
       @notebook.add(person)
     end
 
     def remove
-      name = Input.string_input('Name: ')
-      surname = Input.string_input('Surname: ')
-      m_name = Input.string_input('Middle name: ')
+      show_short
+      index = Input.num_input('Index: ')
 
-      person = Person.new(name, surname, m_name, nil, nil, nil, nil)
-      @notebook.remove(person)
+      @notebook.remove(index)
     end
 
     def ch_address
-      name = Input.string_input('Name: ')
-      surname = Input.string_input('Surname: ')
-      m_name = Input.string_input('Middle name: ')
+      show_short
+      index = Input.num_input('Index: ')
 
       new_address = Input.string_input('New address(<Street> <House number>): ')
-      @notebook.change_address(name, surname, m_name, new_address)
+      @notebook.change_address(index, new_address)
     end
 
     def ch_phone
-      name = Input.string_input('Name: ')
-      surname = Input.string_input('Surname: ')
-      m_name = Input.string_input('Patronymic: ')
+      show_short
+      index = Input.num_input('Index: ')
 
       new_phone = Input.phone_input('New phone: ')
-      @notebook.change_phone(name, surname, m_name, new_phone)
+      @notebook.change_phone(index, new_phone)
     end
 
     def sort_by_surname
@@ -114,6 +107,12 @@ module Notebook
 
     def show
       @notebook.each { |person| puts person }
+    end
+
+    def show_short
+      @notebook.each_with_index do |person, index|
+        puts "#{index + 1}. #{person.surname} #{person.name} #{person.m_name}"
+      end
     end
 
     def help
