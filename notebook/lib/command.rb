@@ -7,7 +7,6 @@ module Notebook
   # parses input of user and determine which
   # command user wants to execute
   class Core
-    include Options
     def initialize
       @notebook = Input.read_file
     end
