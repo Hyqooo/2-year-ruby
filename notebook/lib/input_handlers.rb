@@ -4,69 +4,72 @@ require_relative 'notebook_handler'
 require_relative 'person'
 require 'psych'
 
-# Input methods
-module Input
-  include Notebook
-  # to print message use message w/out '\n'
-  def self.num_input(message)
-    loop do
-      print message.to_s
-      line = gets
+# Notebook
+module Notebook
+  # Input methods
+  module Input
+    DATA_FILE = File.expand_path('../data/data.yaml', __dir__)
 
-      return nil if line.nil?
+    # to print message use message w/out '\n'
+    def self.num_input(message)
+      loop do
+        print message.to_s
+        line = gets
 
-      return Float(line.strip)
-    rescue ArgumentError => _exception
-      puts 'incorrect input, try again'
-    end
-  end
+        return nil if line.nil?
 
-  def self.string_input(message)
-    loop do
-      print message.to_s
-      line = gets
-
-      if line.nil?
-        puts 'This field cannot be empty!'
-        next
+        return Float(line.strip)
+      rescue ArgumentError => _exception
+        puts 'incorrect input, try again'
       end
-      line = line.strip
-      if line.empty?
-        puts 'This field cannot be empty!'
-        next
+    end
+
+    def self.string_input(message)
+      loop do
+        print message.to_s
+        line = gets
+
+        if line.nil?
+          puts 'This field cannot be empty!'
+          next
+        end
+        line = line.strip
+        if line.empty?
+          puts 'This field cannot be empty!'
+          next
+        end
+        return line
       end
-      return line
     end
-  end
 
-  def self.phone_input(message)
-    loop do
-      line = string_input(message)
-      # delete all spaces in the string
-      line.gsub!(/\s+/, '')
+    def self.phone_input(message)
+      loop do
+        line = string_input(message)
+        # delete all spaces in the string
+        line.gsub!(/\s+/, '')
 
-      # parse only valid phone numbers
-      # (+ or NUMBER)NUMBERS
-      return line if line.match?(/^(([+]|\d)\d+)$/)
+        # parse only valid phone numbers
+        # (+ or NUMBER)NUMBERS
+        return line if line.match?(/^([+]|\d)\d+$/)
 
-      puts 'Invalid number, try again'
+        puts 'Invalid number, try again'
+      end
     end
-  end
 
-  def self.read_file
-    notebook = Notebook.new
-    all_info = File.exist?('../data/data.yaml') ? Psych.load_file('../data/data.yaml') : notebook
+    def self.read_file
+      notebook = Notebook.new
+      all_info = File.exist?(DATA_FILE) ? Psych.load_file(DATA_FILE) : notebook
 
-    all_info.each do |person|
-      return notebook if person.keys != ['name', 'surname', 'patronymic', 'cell phone',
-                                         'home phone', 'address', 'status']
+      required_keys = %w[name surname patronymic cell\ phone home\ phone address status]
+      all_info.each do |person|
+        return notebook if person.keys != required_keys
 
-      notebook.add(Person.new(person['name'], person['surname'], person['patronymic'],
-                              person['cell phone'], person['home phone'], person['address'], person['status']))
+        notebook.add(Person.new(*person.fetch_values(*required_keys)))
+      end
+      notebook
+    rescue Psych::SyntaxError => e
+      puts "File cannot be loaded: #{e}"
+      notebook
     end
-    notebook
-  rescue Psych::SyntaxError => e
-    puts "File cannot be loaded: #{e}"
-    notebook
   end
 end

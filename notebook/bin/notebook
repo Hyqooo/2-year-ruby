@@ -1,8 +1,8 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
 
 require_relative '../lib/command'
+
 # run module
-module Notebook
-  work = Core.new
-  work.run
-end
+work = Notebook::Core.new
+work.run
