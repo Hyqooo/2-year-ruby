@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 require_relative 'notebook_handler'
 require_relative 'person'
 require 'psych'
 
-module Input 
+# Input methods
+module Input
   include Notebook
   # to print message use message w/out '\n'
   def self.num_input(message)
     loop do
-      print "#{message}"
+      print message.to_s
       line = gets
 
       return nil if line.nil?
@@ -20,7 +23,7 @@ module Input
 
   def self.string_input(message)
     loop do
-      print "#{message}"
+      print message.to_s
       line = gets
 
       if line.nil?
@@ -40,40 +43,30 @@ module Input
     loop do
       line = string_input(message)
       # delete all spaces in the string
-      line.gsub!(/\s+/, "")
+      line.gsub!(/\s+/, '')
 
       # parse only valid phone numbers
       # (+ or NUMBER)NUMBERS
-      if line.match?(/^(([+]|\d)\d+)$/)
-        return line
-      else
-        puts 'Invalid number, try again'
-      end 
+      return line if line.match?(/^(([+]|\d)\d+)$/)
+
+      puts 'Invalid number, try again'
     end
   end
-  
+
   def self.read_file
     notebook = Notebook.new
-    return notebook unless File.exist?('../data/data.yaml')
-    
-    all_info = Psych.load_file('../data/data.yaml')
-    
+    all_info = File.exist?('../data/data.yaml') ? Psych.load_file('../data/data.yaml') : notebook
+
     all_info.each do |person|
-      name = person['name']
-      surname = person['surname']
-      patr = person['patronymic']
-      cell_phone = person['cell phone']
-      home_phone = person['home phone']
-      address = person['address']
-      status = person['status']
-    
-      new_person = Person.new(name, surname, patr, cell_phone,
-                              home_phone, address, status)
-      notebook.add(new_person)
+      return notebook if person.keys != ['name', 'surname', 'patronymic', 'cell phone',
+                                         'home phone', 'address', 'status']
+
+      notebook.add(Person.new(person['name'], person['surname'], person['patronymic'],
+                              person['cell phone'], person['home phone'], person['address'], person['status']))
     end
-    return notebook
+    notebook
   rescue Psych::SyntaxError => e
     puts "File cannot be loaded: #{e}"
-    return notebook
+    notebook
   end
 end

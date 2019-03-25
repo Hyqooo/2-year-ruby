@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notebook
   # Describes address
   class Address

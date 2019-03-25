@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notebook
   # incapsulates notebook
   class Notebook
@@ -16,6 +18,7 @@ module Notebook
     def change_address(name, surname, m_name, new_address)
       @list.each do |p|
         next unless p.name == name && p.surname == surname && p.m_name == m_name
+
         p.address = new_address
       end
     end
@@ -23,6 +26,7 @@ module Notebook
     def change_phone(name, surname, m_name, new_phone)
       @list.each do |p|
         next unless p.name == name && p.surname == surname && p.m_name == m_name
+
         p.cell_phone = new_phone
       end
     end

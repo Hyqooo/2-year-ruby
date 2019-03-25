@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'notebook_handler'
 require_relative 'input_handlers'
 require_relative 'person'
@@ -17,6 +19,7 @@ module Notebook
 
         method = Options.get(line.strip)
         break if method == 'exit'
+
         if method.nil?
           puts 'Unknown command, try again'
           next
@@ -96,9 +99,7 @@ module Notebook
       file = File.new(name, 'w')
 
       message += "#{event}\n"
-      if Input.string_input('Add home address[y/n]?: ').casecmp?('y')
-        message += "#{person.address}\n"
-      end
+      message += "#{person.address}\n" if Input.string_input('Add home address[y/n]?: ').casecmp?('y')
 
       message += "#{name}\n" + Input.string_input('Message: ')
 

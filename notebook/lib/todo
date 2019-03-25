@@ -1,5 +1,4 @@
 TODO:
 
-  - rescue error I can refer to parser version (2.1)
   - initialize has 7 parameters instead of 5
   - If I can parse phone numbers with regex
