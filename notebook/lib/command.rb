@@ -10,14 +10,19 @@ module Notebook
   # command user wants to execute
   class Core
     def initialize
+      @options = { 'remove' => :remove, 'add' => :add, 'caddress' => :ch_address,
+                   'cphone' => :ch_phone, 'ssurname' => :sort_by_surname, 'sstatus' => :sort_by_status,
+                   'event' => :event, 'exit' => :exit, 'show' => :show, 'help' => :help }
       @notebook = Input.read_file
+      help
     end
 
     def run
       loop do
         line = Input.string_input('> ')
 
-        method = Options.get(line.strip)
+        method = @options[line.strip]
+        # method = Options.get(line.strip)
         break if method == 'exit'
 
         if method.nil?
@@ -109,6 +114,22 @@ module Notebook
 
     def show
       @notebook.each { |person| puts person }
+    end
+
+    def help
+      help = {
+        help: 'Shows this help',
+        add: 'Adds new person in the notebook',
+        remove: 'Removes person from the notebook',
+        caddress: 'Changes address of specified person',
+        cphone: 'Changes phone of specified person',
+        ssurname: 'Sorts the notebook by surname',
+        sstatus: 'Sorts the notebook by status',
+        event: 'Creates event',
+        show: 'Shows list of all persons in the notebook',
+        exit: 'Exits this program'
+      }
+      help.each { |key, value| puts "#{key} - #{value}" }
     end
   end
 end
