@@ -21,7 +21,10 @@ module Notebook
         line = Input.string_input('> ')
 
         method = @options[line.strip]
-        break if method == 'exit'
+        if method == :exit 
+          Input.save(@notebook)
+          exit
+        end
 
         if method.nil?
           puts 'Unknown command, try again'

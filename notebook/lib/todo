@@ -1,2 +1,4 @@
 TODO:
   - Save state of the notebook into file
+  - I need to convert dumped string into my own format
+  - { :a => 'b' }.to_yaml need to check
