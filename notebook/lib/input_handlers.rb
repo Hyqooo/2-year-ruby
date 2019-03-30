@@ -71,12 +71,5 @@ module Notebook
       puts "File cannot be loaded: #{e}"
       notebook
     end
-
-    def self.save(notebook)
-      # p Psych.dump(notebook)
-      # File.open(DATA_FILE, 'w') do |file|
-      #  file.write(Psych.dump(notebook))
-      # end
-    end
   end
 end
