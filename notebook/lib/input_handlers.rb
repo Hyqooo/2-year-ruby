@@ -16,7 +16,7 @@ module Notebook
         print message.to_s
         line = gets
 
-        return nil if line.nil?
+        raise ArgumentError.new if line.nil?
 
         return Float(line.strip)
       rescue ArgumentError => _exception
